@@ -1,21 +1,21 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList } from '../../navigation/Navigation'
+import ConstructorBlock from './ConstructorBlock'
 
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Section'>
+type DefaultScreenRouteProp = RouteProp<RootStackParamList, 'Section'>
 
 type Props = {
-	route: ProfileScreenRouteProp
+	route: DefaultScreenRouteProp
 }
 
 const DefaultBlock = ({ route }: Props) => {
-	const { id, title } = route.params
+	const { data } = route.params
 	return (
 		<View style={styles.sectionInfo}>
-			<Text>id = {id}</Text>
-			<Text>{title}</Text>
+			<ConstructorBlock data={data} key={data.title} />
 		</View>
 	)
 }
@@ -25,7 +25,8 @@ export default DefaultBlock
 const styles = StyleSheet.create({
 	sectionInfo: {
 		flex: 1,
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		alignItems: 'center',
+		width: '100%',
 	},
 })

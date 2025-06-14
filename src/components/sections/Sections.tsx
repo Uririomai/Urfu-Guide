@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+	Alert,
 	SectionList,
 	StyleSheet,
 	Text,
@@ -13,6 +14,8 @@ import { Gaps } from '../../utils/const'
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Navigation'
 import { StackScreenProps } from '@react-navigation/stack'
+import { TSection, typeBlock } from '../../utils/types'
+import { switchSection } from '../../utils/utils'
 
 type Props = StackScreenProps<RootStackParamList, 'Home'>
 
@@ -21,6 +24,58 @@ const Sections = ({ navigation }: Props) => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const sections = mockData[0].sections
+
+	/* const switchSection = (block: TSection) => {
+		switch (block.content_type) {
+			case 'data': {
+				
+				break
+			}
+			case 'listLink': {
+				navigation.navigate('ListLink', {
+					title: block.title,
+					data: block.data as typeBlock[],
+				})
+				break
+			}
+			default: {
+				navigation.navigate('Section', {
+					id: block.id,
+					title: block.title,
+					data: block.data as typeBlock,
+				})
+				break
+			}
+		}
+	} */
+
+	/* const switchSection = (block: TSection) => {
+		switch (block.content_type) {
+			case 'data': {
+				navigation.navigate('Section', {
+					id: block.id,
+					title: block.title,
+					data: block.data as typeBlock,
+				})
+				break
+			}
+			case 'listLink': {
+				navigation.navigate('ListLink', {
+					title: block.title,
+					data: block.data as typeBlock[],
+				})
+				break
+			}
+			default: {
+				navigation.navigate('Section', {
+					id: block.id,
+					title: block.title,
+					data: block.data as typeBlock,
+				})
+				break
+			}
+		}
+	} */
 
 	return (
 		<View style={styles.sections}>
@@ -42,15 +97,12 @@ const Sections = ({ navigation }: Props) => {
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => {
-								navigation.navigate('Section', {
-									id: item.id,
-									title: item.title,
-								})
+								switchSection(item, item.content_type, navigation)
 							}}
 						>
 							<SectionItem
 								title={item.title}
-								id={item.id}
+								icon={item.icon}
 								content_type={item.content_type}
 								data={item.data}
 							/>

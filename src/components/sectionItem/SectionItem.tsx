@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { Colors, Radius } from '../../utils/const'
 import { TSection } from '../../utils/types'
 
-const SectionItem = ({ title, id, content_type, data }: TSection) => {
+const SectionItem = ({ title }: TSection) => {
 	return (
 		<View style={styles.section}>
 			<View style={styles.iconContainer}>
@@ -35,11 +35,9 @@ const styles = StyleSheet.create({
 		height: 60,
 		justifyContent: 'center',
 		alignItems: 'center',
-		
-		
 	},
 	icon: {
-		resizeMode: 'center'
+		resizeMode: 'center',
 	},
 	text: { color: Colors.textAccent },
 })

@@ -3,6 +3,7 @@ export const Colors = {
 	text: '#222222',
 	accent: '#1E4392',
 	textAccent: 'white',
+	grayBorder: '#F6F6F6',
 }
 
 export const Gaps = {

@@ -1,27 +1,38 @@
-type TDefaultBlock = {
-	id: number
+import { Ionicons } from '@expo/vector-icons'
+
+export type TIcon = React.ComponentProps<typeof Ionicons>['name']
+export type contentType =
+	| 'default_block'
+	| 'default_blocks'
+	| 'drop_down_list_list'
+	| 'drop_down_list'
+	| 'default_block_list'
+
+export type TDefaultBlock = {
 	address?: string
 	title?: string
 	timetable?: string
 	phone?: string
 	description?: string
-}
-type TBlock = {
-	id: number
-	address?: string
-	title?: string
-	timetable?: string
-	phone?: string
-	description?: string
+	link?: string
+	image?: string
 }
 
-type typeBlock = TDefaultBlock | TBlock
+export type TListLinkBlock = {
+	content_type: contentType
+	icon?: TIcon
+	title: string
+	subTitle?: string
+	elements: TDefaultBlock[]
+}
+
+export type typeBlock = TListLinkBlock | TDefaultBlock
 
 export type TSection = {
-	id: number
-	content_type: string
+	content_type: contentType
 	title: string
-	data: typeBlock
+	icon: string
+	data: typeBlock | typeBlock[]
 }
 
 type TLanguageSections = {

@@ -3,14 +3,18 @@ import { StyleSheet, Text, View } from 'react-native'
 import Button from '../button/button'
 import { useRoute } from '@react-navigation/native'
 
-const Header = ({ title = 'Urfu Guide' }) => {
+type HeaderProps = {
+	title?: string
+}
+
+const Header = ({ title = 'Urfu Guide' }: HeaderProps) => {
 	const route = useRoute()
 
 	return (
 		<View style={styles.header}>
 			{route.name === 'Home' && <Button icon='menu' />}
 			<Text style={styles.text}>{title}</Text>
-			<Button icon='search' />
+			{/* <Button icon='search' /> */}
 		</View>
 	)
 }
