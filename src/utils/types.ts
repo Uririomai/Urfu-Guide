@@ -16,10 +16,10 @@ export type TDefaultBlock = {
 	description?: string
 	link?: string
 	image?: string
+	video?: string
 }
 
 export type TListLinkBlock = {
-	content_type: contentType
 	icon?: TIcon
 	title: string
 	subTitle?: string
@@ -32,6 +32,7 @@ export type TSection = {
 	content_type: contentType
 	title: string
 	icon: string
+	iconList?: TIcon
 	data: typeBlock | typeBlock[]
 }
 

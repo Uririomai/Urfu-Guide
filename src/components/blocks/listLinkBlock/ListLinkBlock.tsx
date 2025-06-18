@@ -32,6 +32,7 @@ const ListLinkBlock = ({ route, navigation }: ListLinkBlockProps) => {
 						subTitle={item.subTitle || ''}
 						navigation={navigation}
 						elements={item.elements}
+						item={item}
 					/>
 				)}
 			/>

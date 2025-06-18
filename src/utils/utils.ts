@@ -21,11 +21,15 @@ export const switchSection = (
 			break
 		}
 		case 'default_blocks': {
-			Alert.alert(('data' in block && 'elements' in block.data).toString())
 			navigation.navigate('Section', {
-				title: 'title' in block ? block.title : '2',
+				title:
+					'data' in block && 'elements' in block.data
+						? block.data.elements[0] && 'title' in block.data.elements[0]
+							? (block.data.elements[0].title as string)
+							: ''
+						: '',
 				data: ('data' in block && 'elements' in block.data
-					? block.data.elements
+					? block.data.elements[0]
 					: {}) as TDefaultBlock,
 			})
 			break
@@ -41,7 +45,7 @@ export const switchSection = (
 		}
 		case 'default_block_list': {
 			navigation.navigate('ListLink', {
-				icon: 'icon' in block ? (block.icon as TIcon) : ('link' as TIcon),
+				icon: 'iconList' in block ? (block.iconList as TIcon) : ('link' as TIcon),
 				title: 'title' in block ? block.title : '',
 				content_type: 'default_blocks',
 				data:

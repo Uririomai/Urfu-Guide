@@ -1,9 +1,11 @@
 import React, { JSX } from 'react'
 import { TDefaultBlock, typeBlock } from '../../../utils/types'
-import { Image, StyleSheet, View } from 'react-native'
+import { Alert, Image, StyleSheet, View } from 'react-native'
 import IconText from '../../ConstructorElements/IconText'
 import ImageBlock from '../../ConstructorElements/Image'
 import { FlatList } from 'react-native-gesture-handler'
+import { VideoPlayer } from '../../ConstructorElements/Video'
+import Video, { ReactVideoSourceProperties } from 'react-native-video'
 
 type ConstructorBlockProps = {
 	data: TDefaultBlock
@@ -66,6 +68,10 @@ const ConstructorBlock = ({ data }: ConstructorBlockProps) => {
 						text={data[key] as string}
 					/>
 				)
+				break
+			}
+			case 'video': {
+				arr[6] = <VideoPlayer path={data[key] as string} />
 				break
 			}
 		}

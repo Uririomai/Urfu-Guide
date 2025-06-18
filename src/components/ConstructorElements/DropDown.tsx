@@ -21,7 +21,9 @@ const DropDown = ({ number, block }: DropDownProps) => {
 		<View style={styles.dropDown}>
 			<TouchableOpacity style={styles.textWrapper} onPress={handlePress}>
 				<Text style={styles.number}>{number}</Text>
-				<Text style={styles.text}>{block.title}</Text>
+				<Text style={isOpen ? styles.textBold : styles.text}>
+					{block.title}
+				</Text>
 				{/* <Ionicons style={styles.arrow} name='caret-down' size={16}></Ionicons> */}
 			</TouchableOpacity>
 			{isOpen && (
@@ -41,7 +43,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center',
-		
 	},
 	number: {
 		marginLeft: 16,
@@ -73,8 +74,23 @@ const styles = StyleSheet.create({
 		maxWidth: '80%',
 		textAlignVertical: 'center',
 	},
+	textBold: {
+		/* borderColor: 'black',
+		borderWidth: 1, */
+
+		marginLeft: 16,
+		marginRight: 16,
+		fontSize: 16,
+		minHeight: 40,
+		maxWidth: '80%',
+		textAlignVertical: 'center',
+		fontWeight: 700,
+	},
 	textContent: {
 		marginLeft: 62,
+		borderBottomWidth: 1,
+		paddingBottom: 10,
+		borderColor: '#D3D3D3',
 	},
 })
 

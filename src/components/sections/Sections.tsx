@@ -16,99 +16,52 @@ import { RootStackParamList } from '../navigation/Navigation'
 import { StackScreenProps } from '@react-navigation/stack'
 import { TSection, typeBlock } from '../../utils/types'
 import { switchSection } from '../../utils/utils'
+import ChangeLanguageModal from '../changeLanguageModal/ChangeLanguageModal'
+import { useSelector } from '../../store'
 
 type Props = StackScreenProps<RootStackParamList, 'Home'>
 
 const Sections = ({ navigation }: Props) => {
-	//const [sections, setSections] = useState(mockData[0])
+	const sections = useSelector(state => state.app.sections)
 	const [isLoading, setIsLoading] = useState(false)
-
-	const sections = mockData[0].sections
-
-	/* const switchSection = (block: TSection) => {
-		switch (block.content_type) {
-			case 'data': {
-				
-				break
-			}
-			case 'listLink': {
-				navigation.navigate('ListLink', {
-					title: block.title,
-					data: block.data as typeBlock[],
-				})
-				break
-			}
-			default: {
-				navigation.navigate('Section', {
-					id: block.id,
-					title: block.title,
-					data: block.data as typeBlock,
-				})
-				break
-			}
-		}
-	} */
-
-	/* const switchSection = (block: TSection) => {
-		switch (block.content_type) {
-			case 'data': {
-				navigation.navigate('Section', {
-					id: block.id,
-					title: block.title,
-					data: block.data as typeBlock,
-				})
-				break
-			}
-			case 'listLink': {
-				navigation.navigate('ListLink', {
-					title: block.title,
-					data: block.data as typeBlock[],
-				})
-				break
-			}
-			default: {
-				navigation.navigate('Section', {
-					id: block.id,
-					title: block.title,
-					data: block.data as typeBlock,
-				})
-				break
-			}
-		}
-	} */
+	const modalOpen = useSelector(state => state.app.modalIsOpen)
 
 	return (
 		<View style={styles.sections}>
+			{modalOpen && <ChangeLanguageModal />}
 			{isLoading ? (
 				<Text>Loading</Text>
 			) : (
-				<FlatList
-					style={styles.sectionList}
-					numColumns={2}
-					data={sections}
-					contentContainerStyle={{
-						gap: Gaps.g16,
-						justifyContent: 'center',
-					}}
-					columnWrapperStyle={{
-						justifyContent: 'center',
-						gap: Gaps.g16,
-					}}
-					renderItem={({ item }) => (
-						<TouchableOpacity
-							onPress={() => {
-								switchSection(item, item.content_type, navigation)
-							}}
-						>
-							<SectionItem
-								title={item.title}
-								icon={item.icon}
-								content_type={item.content_type}
-								data={item.data}
-							/>
-						</TouchableOpacity>
-					)}
-				/>
+				<>
+					<FlatList
+						style={styles.sectionList}
+						ListFooterComponent={<Text></Text>}
+						numColumns={2}
+						data={sections}
+						contentContainerStyle={{
+							gap: Gaps.g16,
+							justifyContent: 'center',
+						}}
+						columnWrapperStyle={{
+							justifyContent: 'center',
+							gap: Gaps.g16,
+						}}
+						renderItem={({ item }) => (
+							<TouchableOpacity
+								onPress={() => {
+									switchSection(item, item.content_type, navigation)
+								}}
+							>
+								<SectionItem
+									title={item.title}
+									icon={item.icon}
+									content_type={item.content_type}
+									data={item.data}
+								/>
+							</TouchableOpacity>
+						)}
+					/>
+				</>
 			)}
 		</View>
 	)
@@ -121,7 +74,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'space-between',
 		gap: 16,
-		marginTop: 16,
 	},
 	sectionList: {
 		flex: 1,

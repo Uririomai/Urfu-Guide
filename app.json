@@ -1,35 +1,49 @@
 {
-  "expo": {
-    "name": "UrfuGuide",
-    "slug": "UrfuGuide",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/favicon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true,
-      "package": "com.chuhlievss.UrfuGuide"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "e279e0f9-33b1-45db-8c43-46c3e007d64c"
-      }
-    }
-  }
+	"expo": {
+		"name": "UrfuGuide",
+		"slug": "UrfuGuide",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/favicon.png",
+		"userInterfaceStyle": "light",
+		"newArchEnabled": true,
+		"splash": {
+			"image": "./assets/splash-icon.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"edgeToEdgeEnabled": true,
+			"package": "com.chuhlievss.UrfuGuide"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "e279e0f9-33b1-45db-8c43-46c3e007d64c"
+			}
+		},
+		"plugins": [
+			[
+				"react-native-video",
+				{
+					"enableNotificationControls": true,
+					"androidExtensions": {
+						"useExoplayerRtsp": false,
+						"useExoplayerSmoothStreaming": false,
+						"useExoplayerHls": false,
+						"useExoplayerDash": false
+					}
+				}
+			]
+		]
+	}
 }

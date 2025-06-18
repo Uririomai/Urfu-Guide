@@ -16,6 +16,7 @@ type IconLinkProps = TListLinkBlock & {
 	content_type: contentType
 	elements: TDefaultBlock[]
 	navigation: StackNavigationProp<RootStackParamList, 'ListLink'>
+	item: TDefaultBlock
 }
 
 const IconLink = ({
@@ -25,6 +26,7 @@ const IconLink = ({
 	content_type,
 	elements,
 	navigation,
+	item,
 }: IconLinkProps) => {
 	return (
 		<TouchableOpacity
@@ -32,7 +34,7 @@ const IconLink = ({
 			style={styles.iconText}
 			onPress={() => {
 				switchSection(
-					{ data: { elements: elements } },
+					{ data: { elements: elements || [item] } },
 					content_type,
 					navigation,
 					title
@@ -49,7 +51,7 @@ const IconLink = ({
 			</View>
 			<View style={styles.textWrapper}>
 				<Text style={styles.title}>{title}</Text>
-				<Text style={styles.subTitle}>{subTitle}</Text>
+				{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
 			</View>
 		</TouchableOpacity>
 	)
@@ -61,8 +63,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		columnGap: 10,
-		minHeight: 80,
-		width: '100%',
+		minHeight: 70,
+		width: '95%',
 		padding: 16,
 
 		/* 	borderColor: 'black',
@@ -75,10 +77,14 @@ const styles = StyleSheet.create({
 		marginTop: 8,
 		width: 32,
 		height: 32,
+		
 	},
 	icon: {},
 	textWrapper: {
 		flexDirection: 'column',
+		textAlignVertical: 'center',
+		width: '95%',
+		
 	},
 	title: {
 		color: Colors.text,

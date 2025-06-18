@@ -9,6 +9,7 @@ import DefaultBlock from '../blocks/defaultBlock/DefaultBlock'
 import { TIcon, TSection, typeBlock } from '../../utils/types'
 import ListLinkBlock from '../blocks/listLinkBlock/ListLinkBlock'
 import BlockList from '../blocks/blockList/BlockList'
+import { StyleSheet } from 'react-native'
 
 export type RootStackParamList = {
 	Home: undefined
@@ -26,7 +27,7 @@ const Stack = createStackNavigator<RootStackParamList>()
 
 export const Navigation = () => {
 	return (
-		<NavigationContainer>
+		<NavigationContainer >
 			<Stack.Navigator>
 				<Stack.Screen
 					name='Home'
@@ -59,10 +60,6 @@ export const Navigation = () => {
 	)
 }
 
-export const SideMenu = () => {
-	return (
-		<Drawer.Navigator initialRouteName='Home'>
-			<Drawer.Screen name='Home' component={Sidemenu} />
-		</Drawer.Navigator>
-	)
-}
+const styles = StyleSheet.create({
+	containter: { borderWidth: 1, borderColor: 'black' },
+})
